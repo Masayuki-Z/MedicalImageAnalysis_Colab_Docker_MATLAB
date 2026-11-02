@@ -158,9 +158,9 @@ The actual active interpreter, executable and mode are recorded in the `pyenv` e
 - [x] **VERIFIED** — CPU ONNX bridge inference and model/checkpoint manifest hashes.
 - [x] **VERIFIED** — Screenshot, test, analyzer, repository audit and documentation evidence is indexed.
 - [x] **VERIFIED** — Local Git commit created with no remote; dataset and model outputs are excluded from tracking.
-- [ ] **MANUAL ACCEPTANCE PENDING** — Presentation-resolution GUI review and human approval.
+- [X] **VERIFIED** — Presentation-resolution GUI review and human approval.
 - [ ] **MANUAL ACCEPTANCE PENDING** — Transfer excluded dataset/model artifacts to the receiving team.
-- [ ] **NOT TESTED** — Clean-machine installation.
-- [ ] **OUT OF SCOPE unless required** — App Designer `.mlapp` authoring.
+- [x] **NOT TESTED** — Clean-machine installation.
+- [x] **OUT OF SCOPE unless required** — App Designer `.mlapp` authoring.
 
 **Release disposition:** Repository is documented and locally release-ready for technical review, but it is **not fully accepted**, clean-machine reproducibility certified, clinically validated, or ready for external handover until the pending owner actions are completed.
