@@ -23,3 +23,6 @@ All PNGs below were captured from the actual MATLAB R2026b `MedicalImageAnalysis
 - Model: `model_output/colab_runs/20261101_205443/unet_model.onnx`.
 - The AI probability-map screen is a real inference output; it does not represent a new test-set experiment or metric report.
 - Screenshots are direct GUI captures. They do not prove manual desktop acceptance.
+- The captures show some scrollable content extending beyond the viewport. Review all six sections on the actual presentation display and scaling; screenshot evidence does not substitute for that manual acceptance.
+
+The latest acceptance status and outstanding presentation-resolution walkthrough are documented in [the Final Release Report](../FINAL_RELEASE_REPORT.md).

@@ -107,3 +107,7 @@ docs/evidence/               Test output, model hashes, and GUI screenshots
 - [ ] Confirm the receiving team obtains the ignored dataset and final run directory separately.
 
 The local Git repository has no remote configured. No content has been published. The clean-machine installation, manual desktop acceptance, and external artifact transfer remain unverified.
+
+## Milestone 5.3.5 final acceptance
+
+See the [Final Release Report](FINAL_RELEASE_REPORT.md) for the latest status-classified runtime verification, fresh MATLAB and Python results, artifact integrity checks, screenshot/evidence inventory, Git status, limitations, and owner action checklist. The latest run passed MATLAB 34/34 and Python 7/7. This does not constitute manual GUI acceptance or a clean-machine installation.

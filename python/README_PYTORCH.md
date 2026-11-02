@@ -229,3 +229,17 @@ depend on it. Audit output is in
 [`docs/evidence/test-results/python-r2026b-audit.txt`](../docs/evidence/test-results/python-r2026b-audit.txt).
 The documented virtual-environment installation remains unverified on a
 clean machine.
+
+## Milestone 5.3.5 verification
+
+On 2026-11-02, the existing Python 3.11 environment again passed syntax
+compilation for all 10 Python source files and all 7 `test_pytorch_pipeline.py`
+tests. The MATLAB ONNX bridge imported and completed synthetic-input inference
+using ONNX Runtime 1.31.1 with `CPUExecutionProvider`; output was finite
+`[1,1,256,256]` probabilities. This was an inference smoke test, not a model
+evaluation, export, retraining, or clean-machine installation.
+
+Fresh evidence is in
+[`docs/evidence/test-results/python-r2026b-milestone-5.3.5.txt`](../docs/evidence/test-results/python-r2026b-milestone-5.3.5.txt).
+See the [Final Release Report](../docs/FINAL_RELEASE_REPORT.md) for all
+verification status and remaining owner actions.

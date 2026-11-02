@@ -1,0 +1,28 @@
+﻿Milestone 5.3.5 repository audit; generated 2026-11-02
+branch=main
+baseline_commit=81d0f677f04e50e6f39939c072ad8fbd676b1b5c
+remote_count=0
+tracked_files_at_HEAD=117
+tracked_files_over_50MiB=0
+gitignored:.kaggle/credentials.json=True
+gitignored:data/lgg-mri-segmentation/kaggle_3m/README.md=True
+gitignored:model_output/colab_runs/20261101_205443/best_unet.pth=True
+gitignored:python/__pycache__/sample.pyc=True
+gitignored:.ipynb_checkpoints/sample.ipynb=True
+working_tree_changes_at_capture=12
+status= M README.md
+status= M docs/PROJECT_HANDOVER.md
+status= M docs/PROJECT_STATUS.md
+status= M docs/TEST_REPORT.md
+status= M docs/evidence/SCREENSHOT_INDEX.md
+status= M matlab/README.md
+status= M python/README_PYTORCH.md
+status=?? docs/FINAL_RELEASE_REPORT.md
+status=?? docs/evidence/test-results/matlab-r2026b-milestone-5.3.5-code-analyzer.txt
+status=?? docs/evidence/test-results/matlab-r2026b-milestone-5.3.5-full-suite.txt
+status=?? docs/evidence/test-results/matlab-r2026b-milestone-5.3.5-pyenv.txt
+status=?? docs/evidence/test-results/python-r2026b-milestone-5.3.5.txt
+dataset_present=True; dataset_files=7860
+best_unet.pth: present=True; bytes=124140929; sha256=88397DE274A8BC2D015DC35F658AE28F8B45A756852E3AD18D48EF1D6B53011E
+unet_model.onnx: present=True; bytes=124134029; sha256=1CDB60FF9ACBA8BFDDEB621A9BFEA82E41C8BA176F0694988AA7C2FC0F21A290
+credential_contents_read=false

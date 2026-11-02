@@ -1,0 +1,59 @@
+Running testAppIntegration
+[Warning: Scrollable is set to 'on' on all figures because the Windows accessibility text size setting is greater than 100%.
+To prevent this behavior, revert the text size setting back to 100% and instead use the Windows system display scale setting to increase the size of on-screen elements.]
+.......
+Done testAppIntegration
+__________
+
+Running testGroundTruthEvaluation
+......
+Done testGroundTruthEvaluation
+__________
+
+Running testImageModules
+.......... .....
+Done testImageModules
+__________
+
+Running testONNXIntegration
+......
+Done testONNXIntegration
+__________
+
+                                          Name                                          Passed    Failed    Incomplete    Duration       Details
+    ________________________________________________________________________________    ______    ______    __________    _________    ____________
+
+    {'testAppIntegration/testClassicalGeometryAndSaveWorkflow'                     }    true      false       false          19.009    {11 struct}
+    {'testAppIntegration/testAIWorkflowUsesOriginalAndDisplaysOverlay'             }    true      false       false          12.439    {11 struct}
+    {'testAppIntegration/testGroundTruthLoadResizePreservationAndMRIReplacement'   }    true      false       false          6.9067    {11 struct}
+    {'testAppIntegration/testImageStatesAndMaskSourceRemainIndependent'            }    true      false       false          8.2625    {11 struct}
+    {'testAppIntegration/testDynamicParameterMetadataAndValidation'                }    true      false       false          5.7172    {11 struct}
+    {'testAppIntegration/testMissingImageAndModelErrors'                           }    true      false       false          4.6161    {11 struct}
+    {'testAppIntegration/testIndependentWorkflowSectionsAndSectionReset'           }    true      false       false          7.3202    {11 struct}
+    {'testGroundTruthEvaluation/testBinaryConversionAndNearestNeighborAlignment'   }    true      false       false        0.041055    {11 struct}
+    {'testGroundTruthEvaluation/testFloatingMaskUsesOtsuAndRejectsUnsupportedInput'}    true      false       false        0.033669    {11 struct}
+    {'testGroundTruthEvaluation/testOverlapCountsAndMetrics'                       }    true      false       false        0.013439    {11 struct}
+    {'testGroundTruthEvaluation/testEmptyMaskAndZeroDenominatorConventions'        }    true      false       false         0.01279    {11 struct}
+    {'testGroundTruthEvaluation/testMaskDimensionsAndBinaryValidation'             }    true      false       false       0.0087461    {11 struct}
+    {'testGroundTruthEvaluation/testGroundTruthHasIndependentImageState'           }    true      false       false       0.0086089    {11 struct}
+    {'testImageModules/testHistogramAndIntensityOperations'                        }    true      false       false         0.12173    {11 struct}
+    {'testImageModules/testRgbLuminanceOperations'                                 }    true      false       false        0.024353    {11 struct}
+    {'testImageModules/testSpatialFiltersAndSharpening'                            }    true      false       false        0.030963    {11 struct}
+    {'testImageModules/testFourierFilters'                                         }    true      false       false        0.041944    {11 struct}
+    {'testImageModules/testEdgeDetectorsAndOtsu'                                   }    true      false       false        0.079666    {11 struct}
+    {'testImageModules/testRegionGrowing'                                          }    true      false       false        0.031562    {11 struct}
+    {'testImageModules/testRgbAndHsvSegmentation'                                  }    true      false       false        0.025736    {11 struct}
+    {'testImageModules/testMorphologyAndShapeFiltering'                            }    true      false       false         0.15647    {11 struct}
+    {'testImageModules/testInterpolationFunctions'                                 }    true      false       false        0.019568    {11 struct}
+    {'testImageModules/testGeometricMappings'                                      }    true      false       false        0.049195    {11 struct}
+    {'testImageModules/testResizeInterpolationPreservesBinaryMask'                 }    true      false       false        0.010357    {11 struct}
+    {'testImageModules/testResizeExtendsBoundaryPixels'                            }    true      false       false       0.0092949    {11 struct}
+    {'testImageModules/testRadialDistortionRoundTrip'                              }    true      false       false         0.01862    {11 struct}
+    {'testImageModules/testImageStateKeepsOriginalAndTracksPipeline'               }    true      false       false        0.027463    {11 struct}
+    {'testImageModules/testInvalidParameters'                                      }    true      false       false        0.022172    {11 struct}
+    {'testONNXIntegration/testPreprocessingMatchesPythonChannelAndZScore'          }    true      false       false        0.077106    {11 struct}
+    {'testONNXIntegration/testNonModelSizeUsesPythonResizeAndNormalization'        }    true      false       false        0.014605    {11 struct}
+    {'testONNXIntegration/testFinalONNXInferencePreservesStateAndAlignment'        }    true      false       false         0.27995    {11 struct}
+    {'testONNXIntegration/testONNXSignatureAndPythonOutputParity'                  }    true      false       false         0.51577    {11 struct}
+    {'testONNXIntegration/testInvalidInputsAndMissingModelAreReported'             }    true      false       false        0.028594    {11 struct}
+    {'testONNXIntegration/testStateStoresProbabilitySeparately'                    }    true      false       false        0.010299    {11 struct}

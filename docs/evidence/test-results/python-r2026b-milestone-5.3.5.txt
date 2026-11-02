@@ -1,0 +1,19 @@
+Python syntax compilation: 10 source files passed
+Python executable: C:\Users\ACER\AppData\Local\Programs\Python\Python311\python.exe
+numpy=1.26.4; Pillow=11.0.0; torch=2.9.1+cpu; onnxruntime=1.31.1
+available_providers=['AzureExecutionProvider', 'CPUExecutionProvider']
+bridge_import=passed; input=flair ['batch', 1, 256, 256]; output=probability ['batch', 1, 256, 256]; providers=['CPUExecutionProvider']
+synthetic ONNX smoke=passed; input=(1, 1, 256, 256); output=(1, 1, 256, 256); range=[0.0000000,0.0063151]; provider=CPUExecutionProvider
+test_dataset_uses_flair_channel_and_binary_mask (test_pytorch_pipeline.PyTorchPipelineTests.test_dataset_uses_flair_channel_and_binary_mask) ... ok
+test_metrics_use_fixed_threshold (test_pytorch_pipeline.PyTorchPipelineTests.test_metrics_use_fixed_threshold) ... ok
+test_patient_split_is_deterministic_disjoint_and_70_15_15 (test_pytorch_pipeline.PyTorchPipelineTests.test_patient_split_is_deterministic_disjoint_and_70_15_15) ... ok
+test_split_manifest_counts_images_and_checks_overlap (test_pytorch_pipeline.PyTorchPipelineTests.test_split_manifest_counts_images_and_checks_overlap) ... ok
+test_training_augmentation_keeps_mask_binary_and_aligned (test_pytorch_pipeline.PyTorchPipelineTests.test_training_augmentation_keeps_mask_binary_and_aligned) ... ok
+test_unet_forward_backward_and_loss (test_pytorch_pipeline.PyTorchPipelineTests.test_unet_forward_backward_and_loss) ... ok
+test_zero_variance_normalization_is_finite_and_zero (test_pytorch_pipeline.PyTorchPipelineTests.test_zero_variance_normalization_is_finite_and_zero) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.150s
+
+OK
+additional_runtime_check: python=C:\Users\ACER\AppData\Local\Programs\Python\Python311\python.exe; matplotlib=3.9.2

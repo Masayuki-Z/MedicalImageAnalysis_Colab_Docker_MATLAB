@@ -92,3 +92,5 @@ The original Keras Notebook/model and FastAPI/Docker project files remain as his
 ## Status and handover
 
 The current finalization record is in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md), and the developer-oriented checklist is in [docs/PROJECT_HANDOVER.md](docs/PROJECT_HANDOVER.md). The App Designer `.mlapp` and manual visual/usability acceptance remain outstanding. No remote is configured, and no content has been published.
+
+The latest acceptance evidence and outstanding release actions are summarized in the [Milestone 5.3.5 Final Release Report](docs/FINAL_RELEASE_REPORT.md). Automated tests passed on the existing development machine; clean-machine installation and human desktop acceptance remain pending.

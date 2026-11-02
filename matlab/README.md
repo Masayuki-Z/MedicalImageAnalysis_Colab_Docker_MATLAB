@@ -284,3 +284,15 @@ input propagation, mask-source selection, dynamic parameters, display,
 save/reset, errors, workflow navigation, independent selectors, section
 operation dispatch, and scoped reset. Manual desktop acceptance of the
 Milestone 5.3.2 layout and interactions remains outstanding.
+## Milestone 5.3.5 verification
+
+The fresh MATLAB R2026b regression run passed **34/34** tests (0 failed, 0
+incomplete). The suite includes Modules 1–3, ONNX integration, GUI integration,
+and Ground Truth evaluation. MATLAB Code Analyzer inspected 69 `.m` files; five
+advisory findings remain in the legacy `MedicalImageToolbox.m` prototype, with
+no diagnostics reported for the current app or tests.
+
+See the [full test report](../docs/TEST_REPORT.md), [fresh MATLAB test output](../docs/evidence/test-results/matlab-r2026b-milestone-5.3.5-full-suite.txt),
+and [Final Release Report](../docs/FINAL_RELEASE_REPORT.md). Automated GUI
+tests do not constitute human desktop acceptance; target-display review remains
+pending.

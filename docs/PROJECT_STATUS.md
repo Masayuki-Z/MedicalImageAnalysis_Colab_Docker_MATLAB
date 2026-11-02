@@ -2,7 +2,45 @@
 
 Updated: 2026-11-02
 
-## Current Status — Milestone 5.3.4: Final Repository Audit and Cleanup
+## Current Status — Milestone 5.3.5: Final Acceptance, Reproducibility & Release Readiness
+
+### Completed
+
+- Reviewed current source, documentation, Git state, and Milestone 5.3.4 evidence. MATLAB modules, AppBase GUI, Python ONNX bridge, dataset, Keras/ONNX/PyTorch artifacts, experiment results, and historical API/Docker assets remain preserved.
+- Re-ran final MATLAB and Python suites, Python syntax compilation, MATLAB Code Analyzer, MATLAB `pyenv` inspection, CPU ONNX bridge smoke inference, repository ignore/size checks, and read-only model hash checks.
+- Added the status-classified [final release report](FINAL_RELEASE_REPORT.md) and fresh Milestone 5.3.5 runtime, test, and Code Analyzer evidence. Existing historical test output was preserved.
+- Reviewed the indexed GUI captures for the six workflow sections. Automated checks remain distinct from human desktop acceptance.
+
+### Tested
+
+- MATLAB R2026b: **34 passed, 0 failed, 0 incomplete**.
+- Python 3.11: **7/7 pipeline tests passed**, all 10 Python source files compiled, bridge import passed, and synthetic ONNX inference returned finite probabilities in `[0,1]` at `[1,1,256,256]`.
+- Runtime: MATLAB `pyenv` reports Python 3.11 at `C:\Users\ACER\AppData\Local\Programs\Python\Python311\python.EXE` in `InProcess` mode. Python reports NumPy 1.26.4, Pillow 11.0.0, PyTorch 2.9.1+cpu, Matplotlib 3.9.2, and ONNX Runtime 1.31.1; bridge explicitly selects `CPUExecutionProvider`.
+- Code Analyzer inspected 69 MATLAB files; five advisory diagnostics remain only in the legacy `matlab/MedicalImageToolbox.m` prototype.
+- Model and checkpoint hashes match the manifest; required local data/model/run assets are present and excluded from Git.
+
+### Acceptance status and limitations
+
+- **AUTOMATED TESTED:** six GUI sections, workflow operations, state separation, input/model errors, save/reset, and metrics/overlap paths via the 7 GUI integration tests.
+- **MANUAL ACCEPTANCE PENDING:** a human desktop walkthrough, accessibility/usability review, and presentation-display scaling. Existing screenshots show scrollable content extending beyond the captured viewport; confirm layout on the target display.
+- **NOT TESTED:** clean-machine installation, local ONNX export/graph validation (optional `onnx` package unavailable), MATLAB-bridge GPU inference, and external artifact delivery.
+- **OUT OF SCOPE unless required:** App Designer `.mlapp` conversion/authoring; the current app remains an AppBase `.m` class.
+- Training instability after epoch 7 remains unexplained. ONNX parity remains limited to five slices from one patient. No clinical validation is claimed.
+
+### Files Changed
+
+- Added `docs/FINAL_RELEASE_REPORT.md`.
+- Updated `README.md`, `docs/PROJECT_STATUS.md`, `docs/PROJECT_HANDOVER.md`, `docs/TEST_REPORT.md`, `docs/evidence/SCREENSHOT_INDEX.md`, `matlab/README.md`, and `python/README_PYTORCH.md`.
+- Added fresh Milestone 5.3.5 MATLAB, Python, runtime, and Code Analyzer evidence.
+- No source algorithms, tests, GUI implementation, model, dataset, or experiment result was changed.
+
+### Evidence
+
+- [Final release report](FINAL_RELEASE_REPORT.md).
+- [Fresh MATLAB suite](evidence/test-results/matlab-r2026b-milestone-5.3.5-full-suite.txt), [Python checks](evidence/test-results/python-r2026b-milestone-5.3.5.txt), [Code Analyzer](evidence/test-results/matlab-r2026b-milestone-5.3.5-code-analyzer.txt), and [MATLAB `pyenv`](evidence/test-results/matlab-r2026b-milestone-5.3.5-pyenv.txt).
+- [Fresh Milestone 5.3.5 repository audit](evidence/test-results/repository-audit-milestone-5.3.5.txt), [model hashes](evidence/model-artifact-manifest.txt), and [screenshot index](evidence/SCREENSHOT_INDEX.md).
+
+## Completed Milestone 5.3.4: Final Repository Audit and Cleanup
 
 ### Completed
 

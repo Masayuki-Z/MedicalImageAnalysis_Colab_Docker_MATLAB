@@ -1,0 +1,8 @@
+  PythonEnvironment with properties:
+
+          Version: "3.11"
+       Executable: "C:\Users\ACER\AppData\Local\Programs\Python\Python311\python.EXE"
+          Library: "C:\Users\ACER\AppData\Local\Programs\Python\Python311\python311.dll"
+             Home: "C:\Users\ACER\AppData\Local\Programs\Python\Python311"
+           Status: NotLoaded
+    ExecutionMode: InProcess
