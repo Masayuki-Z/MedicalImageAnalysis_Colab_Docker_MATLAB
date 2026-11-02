@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+kaggle.json
+data/*
+models/*.keras
+models/*.json
+models/*.png
+results/*
+*.txt
+model_output/s
+masterprompt.txt
+processed_result.png
+PROMPT_CONTINUATION_TH.md
