@@ -1,0 +1,9 @@
+function validateOutputSize(outputSize)
+%VALIDATEOUTPUTSIZE Validate [height width] output dimensions.
+if ~isnumeric(outputSize) || numel(outputSize) ~= 2 || ...
+        any(~isfinite(outputSize)) || any(outputSize < 1) || ...
+        any(outputSize ~= floor(outputSize))
+    error("MedicalImageToolbox:OutputSize", ...
+        "Output size must be a positive integer [height width].");
+end
+end

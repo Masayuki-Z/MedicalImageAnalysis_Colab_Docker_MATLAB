@@ -1,12 +1,43 @@
+# Python environments, bytecode, and disposable tool caches
 .venv/
+venv/
 __pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# MATLAB editor and generated build files
+*.asv
+*.m~
+*.autosave
+slprj/
+codegen/
+
+# Operating-system/editor metadata and temporary output
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.log
+!.gitkeep
+!docs/evidence/test-results/*.log
+
+# Local credentials and environment files
+.kaggle/
 kaggle.json
+.env
+.env.*
+!.env.example
+
+# Large, externally obtained dataset and model artifacts
 data/*
 models/*.keras
-models/*.json
-models/*.png
 results/*
 model_output/
+
+# Local prompt/output files retained outside the source repository
 masterprompt.txt
 processed_result.png
 PROMPT_CONTINUATION_TH.md
