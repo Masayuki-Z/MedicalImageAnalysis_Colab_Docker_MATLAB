@@ -34,7 +34,7 @@ See the exact path-by-path list and rationale in the [Milestone 5.3.6 Legacy Cle
 
 ### Git commit
 
-The final Milestone 5.3.6 commit hash will be recorded here after committing the completed documentation, cleanup, and test evidence.
+Primary Milestone 5.3.6 cleanup commit: `eff2d4780e8bf84eca6a6c8f089b86db432ed1b7` — `Milestone 5.3.6: Remove obsolete legacy components and finalize repository cleanup`. A documentation-only follow-up records this hash. The final worktree is verified clean after that follow-up; no remote is configured and nothing was pushed.
 
 ## Completed Milestone 5.3.5: Final Acceptance, Reproducibility & Release Readiness
 
