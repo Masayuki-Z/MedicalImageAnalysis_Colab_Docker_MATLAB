@@ -28,7 +28,7 @@ results = runModuleTests;
 | Ground-truth evaluation (`testGroundTruthEvaluation`) | 6 |
 | **Total** | **34** |
 
-The full MATLAB runner output was captured at [matlab-r2026b-full-suite.txt](evidence/test-results/matlab-r2026b-full-suite.txt). The additional 34th test covers the six-section navigation, distinct operation selectors, section callback processing, and scoped reset. The AI workflow test also asserts that computed metrics appear in the Evaluation section.
+The full MATLAB runner output was captured at [the Milestone 5.3.4 test log](evidence/test-results/matlab-r2026b-milestone-5.3.4-full-suite.txt). The additional 34th test covers the six-section navigation, distinct operation selectors, section callback processing, and scoped reset. The AI workflow test also asserts that computed metrics appear in the Evaluation section.
 
 Coverage exercised includes Module 1–3 function behavior and invalid parameters, Python/MATLAB preprocessing parity, ONNX model dimensions and inference, probability and mask validation, original-image preservation, mask alignment, GUI workflow/display, ground-truth handling, metrics and overlap colors, and missing-model/input errors.
 
@@ -47,3 +47,14 @@ Coverage exercised includes Module 1–3 function behavior and invalid parameter
 - The final experiment's model, metrics, and ONNX parity limits are documented in [MILESTONE3_FINAL_AUDIT.md](MILESTONE3_FINAL_AUDIT.md). The cause of training collapse after epoch 7 remains unknown; ONNX parity evidence covers five slices from one test patient.
 - The tests require the externally supplied final run folder because the model and `MATLAB_Export` examples are excluded from Git.
 - No local full-training run or GPU inference through the MATLAB bridge was performed for this finalization.
+
+## Milestone 5.3.4 repository audit (2026-11-02)
+
+- Re-ran the complete MATLAB suite: **34 passed, 0 failed, 0 incomplete**. The raw output is in [the Milestone 5.3.4 test log](evidence/test-results/matlab-r2026b-milestone-5.3.4-full-suite.txt); the previous milestone log remains unchanged.
+- MATLAB Code Analyzer inspected **69 `.m` files**. It reported five advisory diagnostics, all in the legacy [`MedicalImageToolbox.m`](../matlab/MedicalImageToolbox.m) prototype (extra comma, indentation, and an `ismatrix` suggestion); the app and test files had no diagnostics. No source was changed to suppress these findings. Full output: [matlab-r2026b-code-analyzer.txt](evidence/test-results/matlab-r2026b-code-analyzer.txt).
+- Python 3.11 syntax compilation passed for all **10** `.py` source files, and the Python pipeline unit suite passed **7/7** tests.
+- Imported the bridge and ran a separate synthetic-input ONNX smoke inference with ONNX Runtime **1.31.1**, explicitly using `CPUExecutionProvider`. Input/output were `[1,1,256,256]`; output probabilities were finite and within `[0,1]`. This did not modify experiment metrics or evaluate a test sample. Output: [python-r2026b-audit.txt](evidence/test-results/python-r2026b-audit.txt).
+- The inspected Python environment has NumPy 1.26.4, Pillow 11.0.0, PyTorch 2.9.1+cpu, and ONNX Runtime 1.31.1. The optional `onnx` exporter/graph-checking package is not installed; export tools were not run during this audit.
+- Both model SHA-256 digests match [the artifact manifest](evidence/model-artifact-manifest.txt). The local dataset, legacy Keras model, and required final run files are present. No tracked file exceeds 50 MB; the dataset and run directory remain ignored by Git.
+- No empty project directories or source cache/checkpoint directories were found. Existing root prompt/result files and the ignored Kaggle credential directory were retained; credential contents were not opened. A clean-machine installation and manual desktop acceptance remain unverified.
+- [repository-audit.txt](evidence/test-results/repository-audit.txt) captures branch/remotes, tracked-file size and count, representative ignore checks, local dataset/model presence, hashes, and the limited high-confidence token-pattern scan of tracked source.

@@ -58,7 +58,7 @@ results = runModuleTests;
 assert(all([results.Passed]));
 ```
 
-**Finalization verification (2026-11-02): MATLAB R2026b, 34 passed, 0 failed, 0 incomplete.** Includes 15 Module 1–3 tests, 6 ONNX tests, 7 app tests, and 6 ground-truth/evaluation tests. See [docs/TEST_REPORT.md](docs/TEST_REPORT.md) and captured [test output](docs/evidence/test-results/matlab-r2026b-full-suite.txt). Automated GUI tests do not replace manual desktop acceptance.
+**Final repository audit (2026-11-02): MATLAB R2026b, 34 passed, 0 failed, 0 incomplete; Python 7/7 tests passed, all 10 Python source files compiled, and the bridge completed a CPU ONNX smoke inference.** See [docs/TEST_REPORT.md](docs/TEST_REPORT.md) and its linked test evidence. Automated GUI tests do not replace manual desktop acceptance, and the documented installation has not been tested on a clean machine.
 
 Genuine MATLAB application screenshots and their feature descriptions are in [docs/evidence/SCREENSHOT_INDEX.md](docs/evidence/SCREENSHOT_INDEX.md).
 

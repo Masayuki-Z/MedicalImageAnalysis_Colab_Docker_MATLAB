@@ -1,0 +1,7 @@
+FILE C:\Users\ACER\Downloads\MedicalImageAnalysis_Colab_Docker_MATLAB\MedicalImageAnalysis_Colab_Docker_MATLAB\matlab\MedicalImageToolbox.m
+L24: Extra comma is unnecessary.
+L29: This keyword might not be aligned with its matching END on line 41.
+L46: When checking if a variable is a matrix consider using ISMATRIX.
+L54: This keyword might not be aligned with its matching END on line 57.
+L63: Extra comma is unnecessary.
+Code Analyzer inspected 69 MATLAB files; diagnostics=5.

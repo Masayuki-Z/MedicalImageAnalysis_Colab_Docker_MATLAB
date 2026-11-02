@@ -219,3 +219,13 @@ and 6 ground-truth evaluation tests. Raw output is captured at
 The final model artifacts remain in the audited run and are intentionally not
 retrained or modified during handover. Their sizes and SHA-256 values are in
 [`docs/evidence/model-artifact-manifest.txt`](../docs/evidence/model-artifact-manifest.txt).
+
+The Milestone 5.3.4 audit additionally compiled all 10 Python source files,
+passed all 7 `test_pytorch_pipeline.py` tests, imported the bridge, and ran a
+separate synthetic-input ONNX smoke inference using the local CPU provider.
+The optional `onnx` package required by the exporter/graph checker is not
+installed in that local interpreter; the saved-model inference bridge does not
+depend on it. Audit output is in
+[`docs/evidence/test-results/python-r2026b-audit.txt`](../docs/evidence/test-results/python-r2026b-audit.txt).
+The documented virtual-environment installation remains unverified on a
+clean machine.

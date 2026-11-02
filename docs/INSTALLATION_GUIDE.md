@@ -20,6 +20,8 @@ The current verified Python environment reports NumPy 1.26.4, Pillow 11.0.0, PyT
 
 Deep Learning Toolbox, Computer Vision Toolbox, and Medical Imaging Toolbox are **not required** by the current application. Inference is Python ONNX Runtime, not native MATLAB ONNX import. A GPU is not required for MATLAB inference. Full model training is a separate Colab workflow and is not part of application installation.
 
+**Reproducibility status:** These versions and the MATLAB-to-Python bridge were verified on the existing Windows development machine. The virtual-environment setup below is provided for new installations but has not been executed on a clean machine; dependency installation from scratch and clean-machine setup are not claimed as tested. The `onnx` Python package is needed for ONNX export/graph validation, not for the saved-model MATLAB inference bridge; it was not installed in the audited local interpreter.
+
 ### Optional components
 
 - PyTorch training, evaluation, and ONNX-export dependencies in `python/requirements-pytorch.txt` and `python/requirements-pytorch-onnx.txt`.

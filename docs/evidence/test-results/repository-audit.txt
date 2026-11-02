@@ -1,0 +1,17 @@
+branch=main
+baseline_commit=617af2b
+remote_count=0
+tracked_file_count_before_audit_commit=113
+tracked_files_over_50MiB=0
+gitignored:.kaggle/credentials.json=True
+gitignored:data/lgg-mri-segmentation/kaggle_3m/README.md=True
+gitignored:model_output/colab_runs/20261101_205443/best_unet.pth=True
+gitignored:python/__pycache__/sample.pyc=True
+gitignored:.ipynb_checkpoints/sample.ipynb=True
+tracked_secret_token_pattern_matches=0
+kaggle_credentials_contents_read=false
+dataset_present=True; dataset_files=7860
+best_unet.pth: present=True; bytes=124140929; sha256=88397DE274A8BC2D015DC35F658AE28F8B45A756852E3AD18D48EF1D6B53011E
+unet_model.onnx: present=True; bytes=124134029; sha256=1CDB60FF9ACBA8BFDDEB621A9BFEA82E41C8BA176F0694988AA7C2FC0F21A290
+source_cache_dirs=[]
+empty_project_dirs=[]

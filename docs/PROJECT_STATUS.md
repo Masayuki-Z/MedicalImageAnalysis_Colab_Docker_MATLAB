@@ -2,7 +2,52 @@
 
 Updated: 2026-11-02
 
-## Current Status — Milestone 5.3.3: Finalization & Project Handover
+## Current Status — Milestone 5.3.4: Final Repository Audit and Cleanup
+
+### Completed
+
+- Audited the source tree, historical and current project components, Git history/status/remotes, ignore rules, and locally preserved datasets and experiment outputs. No source cache directories or empty project directories were present; no project files were removed.
+- Confirmed all required source, MATLAB tests, current and legacy notebooks, API/Docker assets, Keras model, dataset, and audited experiment outputs remain present. Prompt/output files and credentials were left local and ignored rather than deleted.
+- Verified `.gitignore` excludes Python bytecode/caches, MATLAB temporary/build output, OS metadata, notebook checkpoints, local credentials, dataset files, and generated model runs. No tracked file exceeds 50 MB; no remote is configured.
+- Verified the checkpoint and ONNX SHA-256 values against the artifact manifest without modifying either model or any experiment result.
+- Updated the project handover and status with this audit, fresh test evidence, repository classification, and current limitations. Preserved historical milestone records and results.
+- Removed only the transient `python/__pycache__` generated during MATLAB/Python verification; no source, test, dataset, model, or historical project asset was removed.
+
+### Tested
+
+- MATLAB R2026b full suite: **34 passed, 0 failed, 0 incomplete** (15 Module 1–3, 6 ONNX integration, 7 GUI integration, 6 ground-truth evaluation).
+- MATLAB Code Analyzer inspected 69 `.m` files. The app and test files have no diagnostics; five advisory diagnostics remain in the legacy `matlab/MedicalImageToolbox.m` prototype. No algorithm or test was changed to suppress them.
+- Python 3.11 syntax compilation passed for all 10 source files; all 7 Python pipeline unit tests passed.
+- Imported the MATLAB bridge and executed a fresh synthetic-input ONNX smoke inference with ONNX Runtime 1.31.1 using `CPUExecutionProvider`; tensor dimensions and finite probability range were valid.
+- Confirmed the required local dataset (7,860 files), legacy Keras model, final model/checkpoint, metrics, split, training history, ONNX parity report, and Colab environment report remain present.
+- Model and checkpoint hashes match the manifest; local credential-pattern scan and Git exclusion checks are recorded in the handover evidence.
+
+### Not Tested
+
+- Clean-machine installation, manual desktop acceptance, accessibility, and layout at other display scales.
+- ONNX export from this local Python interpreter; the optional `onnx` export/graph-validation package is not installed here. The preserved ONNX artifact and MATLAB inference path were tested.
+- Model retraining, GPU inference through the MATLAB bridge, expanded ONNX parity, clinical evaluation, or external dataset/model distribution.
+
+### Files Changed
+
+- Updated root `README.md`, `python/README_PYTORCH.md`, `docs/PROJECT_STATUS.md`, `docs/PROJECT_HANDOVER.md`, `docs/TEST_REPORT.md`, and installation/reproducibility notes.
+- Preserved the historical MATLAB runner log and added fresh Milestone 5.3.4 suite output, Python audit, MATLAB Code Analyzer, and repository audit evidence.
+- Preserved all MATLAB algorithms, GUI behavior, Python bridge, tests, dataset, Keras/ONNX/PyTorch artifacts, experiment reports, notebooks, and legacy API/Docker assets.
+
+### Known Issues and Next Actions
+
+- Five advisory Code Analyzer diagnostics remain in the legacy `matlab/MedicalImageToolbox.m` prototype; they are not test failures and were not changed during this audit.
+- Manual desktop acceptance, clean-machine installation, external distribution of ignored dataset/model artifacts, and any required App Designer `.mlapp` authoring remain project-owner actions.
+- ONNX export tools require the optional `onnx` package; the runtime bridge itself and saved-model inference were verified without it.
+
+### Evidence
+
+- [Fresh MATLAB suite output](evidence/test-results/matlab-r2026b-milestone-5.3.4-full-suite.txt), [Python audit output](evidence/test-results/python-r2026b-audit.txt), and [MATLAB Code Analyzer output](evidence/test-results/matlab-r2026b-code-analyzer.txt).
+- [Repository audit evidence](evidence/test-results/repository-audit.txt) records Git exclusions, local artifact presence and hashes, and the tracked-source token scan.
+- [Test report](TEST_REPORT.md), [handover checklist](PROJECT_HANDOVER.md), [artifact manifest](evidence/model-artifact-manifest.txt), and [screenshot index](evidence/SCREENSHOT_INDEX.md).
+- Git remains local on `main`, with no remote. The final audit commit is recorded after verification.
+
+## Completed Milestone 5.3.3: Finalization and Project Handover
 
 ### Completed
 
@@ -59,7 +104,7 @@ Complete manual desktop acceptance on the presentation machine. If required by t
 - [Installation](INSTALLATION_GUIDE.md), [user](USER_GUIDE.md), [architecture](ARCHITECTURE.md), and [handover](PROJECT_HANDOVER.md) guides.
 - Git history was inspected before editing: branch `main`, two existing commits, only `.gitignore` previously tracked, and no configured remote.
 
-## Current Status — Milestone 5.3.2: Independent GUI Workflow Redesign
+## Completed Milestone 5.3.2: Independent GUI Workflow Redesign
 
 ### Completed
 
