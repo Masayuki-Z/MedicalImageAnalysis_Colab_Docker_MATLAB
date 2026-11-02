@@ -23,7 +23,7 @@
 
 **VERIFIED** — AI inference starts from the preserved Original MRI. MATLAB selects the documented FLAIR channel for the audited LGG RGB dataset, then calls the Python bridge through MATLAB `pyenv`. Python performs the model preprocessing and ONNX Runtime inference with `CPUExecutionProvider`. AI input, probability map, prediction, classical mask, and Ground Truth remain separate states. Loading Ground Truth does not start inference.
 
-**OUT OF SCOPE** — Native MATLAB ONNX import and GPU inference through the MATLAB bridge. Legacy Keras, FastAPI, and Docker assets remain preserved references, not the current inference route.
+**OUT OF SCOPE** — Native MATLAB ONNX import and GPU inference through the MATLAB bridge. FastAPI, Docker/Compose, Keras scripts, and the legacy Keras model were retired in Milestone 5.3.6; the Keras-era Colab notebook remains an archived historical experiment only.
 
 ## 3. Implemented features
 
@@ -73,9 +73,9 @@ Evidence: [Python audit and test output](evidence/test-results/python-r2026b-mil
 
 **VERIFIED** — Eleven genuine MATLAB `exportapp` screenshots and their feature descriptions are present in the [screenshot index](evidence/SCREENSHOT_INDEX.md). They were generated from the actual app using preserved sample/model assets; they are not user-acceptance signatures.
 
-**MANUAL ACCEPTANCE PENDING** — No human desktop walkthrough or accessibility review was performed for this milestone. The existing captures have visible scrollbars and some workspace content extends beyond the captured viewport; confirm navigation, controls, axes, and scrolling at the actual presentation resolution and Windows text/display scaling before presenting.
+**VERIFIED (owner-confirmed)** — The project owner confirmed the human presentation-resolution GUI walkthrough and acceptance on 2026-11-02. This confirmation was provided directly by the owner; it was not independently witnessed or separately captured as test evidence in this audit. The genuine screenshots show scrollable content beyond some captured viewports.
 
-**MANUAL ACCEPTANCE PENDING** — The GUI is a programmatic AppBase `.m` class, not an App Designer `.mlapp`. If the instructor requires `.mlapp`, create and validate it separately using supported App Designer workflows; automatic conversion was not attempted.
+**MANUAL ACCEPTANCE PENDING only if required by the course** — The GUI is a programmatic AppBase `.m` class, not an App Designer `.mlapp`. If the instructor requires `.mlapp`, create and validate it separately using supported App Designer workflows; automatic conversion was not attempted.
 
 ## 8. Model artifact integrity
 
@@ -115,20 +115,18 @@ The complete final run also retains test metrics, training history, patient spli
 - The project is not clinically validated and must not be used for diagnosis or treatment.
 - Training instability after epoch 7 has no verified cause.
 - ONNX parity covers only five slices from one patient.
-- The model and dataset are excluded from Git and require authorized separate transfer. The dataset is distributed under CC BY-NC-SA 4.0; review its terms before redistribution.
+- The model and dataset are excluded from Git. The project owner confirmed recipient transfer and hash verification on 2026-11-02; that transfer was not independently repeated in this session. The dataset is distributed under CC BY-NC-SA 4.0; review its terms before redistribution.
 - The optional local ONNX export/graph-validation dependency is absent.
-- Five advisory Code Analyzer diagnostics remain in the legacy MATLAB prototype.
+- The Milestone 5.3.5 analyzer recorded five advisory findings in the then-current prototype; the Milestone 5.3.6 analyzer records three after retiring its Keras/API controls.
 - The Python install steps have not been tested on a clean machine.
 
-## 12. Outstanding manual acceptance tasks
+## 12. Owner-confirmed acceptance and remaining manual tasks
 
-**MANUAL ACCEPTANCE PENDING**
+**VERIFIED (owner-confirmed, 2026-11-02)** — Presentation-resolution GUI review and acceptance, plus transfer and hash verification of the excluded artifacts, were confirmed by the project owner. They were not independently repeated during this audit.
 
-1. Walk through all six sections on the presentation machine; check display scaling, clipping, scrollbars, controls, save/reset, and error messages.
-2. Obtain human approval of GUI usability and accessibility if required by the course.
-3. Confirm whether an App Designer `.mlapp` is required; if yes, create it separately.
-4. Transfer the complete dataset and final run directory through an authorized channel and verify model hashes at the recipient.
-5. Perform a clean-machine installation if reproducibility certification is required.
+**MANUAL ACCEPTANCE PENDING only if required by the course:** determine whether an App Designer `.mlapp` is mandatory; if yes, author and validate it separately.
+
+**NOT TESTED:** Perform a clean-machine installation if reproducibility certification is required.
 
 ## 13. Installation and execution
 
@@ -158,9 +156,9 @@ The actual active interpreter, executable and mode are recorded in the `pyenv` e
 - [x] **VERIFIED** — CPU ONNX bridge inference and model/checkpoint manifest hashes.
 - [x] **VERIFIED** — Screenshot, test, analyzer, repository audit and documentation evidence is indexed.
 - [x] **VERIFIED** — Local Git commit created with no remote; dataset and model outputs are excluded from tracking.
-- [X] **VERIFIED** — Presentation-resolution GUI review and human approval.
-- [ ] **MANUAL ACCEPTANCE PENDING** — Transfer excluded dataset/model artifacts to the receiving team.
-- [x] **NOT TESTED** — Clean-machine installation.
+- [x] **VERIFIED (owner-confirmed)** — Presentation-resolution GUI review and human approval.
+- [x] **VERIFIED (owner-confirmed)** — Excluded dataset/model artifact transfer and recipient hash verification.
+- [ ] **NOT TESTED** — Clean-machine installation.
 - [x] **OUT OF SCOPE unless required** — App Designer `.mlapp` authoring.
 
-**Release disposition:** Repository is documented and locally release-ready for technical review, but it is **not fully accepted**, clean-machine reproducibility certified, clinically validated, or ready for external handover until the pending owner actions are completed.
+**Release disposition at Milestone 5.3.5:** Locally documented and technically verified, but not clean-machine reproducibility certified or clinically validated. The owner subsequently confirmed manual acceptance and artifact handover, as recorded above.

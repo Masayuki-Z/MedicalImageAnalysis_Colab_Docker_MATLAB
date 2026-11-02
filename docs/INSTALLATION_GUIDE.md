@@ -25,7 +25,7 @@ Deep Learning Toolbox, Computer Vision Toolbox, and Medical Imaging Toolbox are 
 ### Optional components
 
 - PyTorch training, evaluation, and ONNX-export dependencies in `python/requirements-pytorch.txt` and `python/requirements-pytorch-onnx.txt`.
-- Docker/FastAPI and Jupyter assets are retained as legacy/reference project components; they are not required to run the current MATLAB ONNX workflow.
+- The archived historical Keras notebook is not part of the current runtime or installation. FastAPI, Docker/Compose, Keras scripts, and the legacy Keras model were retired in Milestone 5.3.6.
 - The LGG dataset is required only for dataset training and the classical MRI demonstration. It is not required for the saved-sample regression suite, provided the final run artifacts are present.
 
 The local dataset audited for this project occupies about 1.06 GB. The preserved final checkpoint and ONNX model are each about 124 MB. Reserve additional space for the Python environment and temporary files; no minimum RAM or disk specification has been benchmarked.

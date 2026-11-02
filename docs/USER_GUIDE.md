@@ -1,5 +1,7 @@
 # User Guide
 
+The application AI workflow uses the MATLAB-to-Python ONNX bridge and `unet_model.onnx` with ONNX Runtime `CPUExecutionProvider`. Retired Keras, FastAPI, and Docker components are not required or supported.
+
 The MATLAB GUI provides six separate workflow sections. Classical image operations and AI inference are independent paths; the app does not force enhancement or classical segmentation before AI.
 
 ## 1. Launch

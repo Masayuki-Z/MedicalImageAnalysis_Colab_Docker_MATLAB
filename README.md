@@ -58,7 +58,7 @@ results = runModuleTests;
 assert(all([results.Passed]));
 ```
 
-**Final repository audit (2026-11-02): MATLAB R2026b, 34 passed, 0 failed, 0 incomplete; Python 7/7 tests passed, all 10 Python source files compiled, and the bridge completed a CPU ONNX smoke inference.** See [docs/TEST_REPORT.md](docs/TEST_REPORT.md) and its linked test evidence. Automated GUI tests do not replace manual desktop acceptance, and the documented installation has not been tested on a clean machine.
+**Milestone 5.3.6 verification (2026-11-02): MATLAB R2026b, 34 passed, 0 failed, 0 incomplete; all 7 current Python files compiled, Python tests passed 7/7, and synthetic FLAIR ONNX inference plus MATLAB bridge import passed with CPUExecutionProvider.** See [the Test Report](docs/TEST_REPORT.md) and [Legacy Cleanup Report](docs/LEGACY_CLEANUP_REPORT.md). The project owner confirmed manual presentation-resolution GUI acceptance; clean-machine installation remains untested.
 
 Genuine MATLAB application screenshots and their feature descriptions are in [docs/evidence/SCREENSHOT_INDEX.md](docs/evidence/SCREENSHOT_INDEX.md).
 
@@ -74,10 +74,8 @@ The `.pth` and `.onnx` artifacts are each approximately 124 MB, and the local da
 
 ```text
 matlab/                 App, shared state, Modules 1–3, tests, MATLAB–Python AI bridge
-python/                 PyTorch pipeline, ONNX bridge, requirements, Python tests
-notebooks/              Current PyTorch Colab notebook and preserved Keras notebook
-api/, Dockerfile*       Legacy API and Docker assets; not the current MATLAB inference route
-models/                 Preserved legacy Keras model (not renamed or used as ONNX)
+notebooks/              Current PyTorch Colab notebook and archived historical Keras notebook
+python/                 PyTorch training/evaluation/export pipeline, MATLAB ONNX bridge, requirements, tests
 data/                   Local dataset, excluded from Git
 model_output/            Local experiment runs/artifacts, excluded from Git
 docs/                   Installation, user, architecture, status, audit, handover, evidence
@@ -87,10 +85,12 @@ docs/                   Installation, user, architecture, status, audit, handove
 
 The local dataset is the [LGG MRI Segmentation Dataset](https://www.kaggle.com/datasets/mateuszbuda/lgg-mri-segmentation), with CC BY-NC-SA 4.0 terms shown on its dataset card. Review those terms before redistribution. Its documentation identifies the RGB channel order as pre-contrast, FLAIR, post-contrast; do not infer FLAIR for arbitrary RGB images.
 
-The original Keras Notebook/model and FastAPI/Docker project files remain as historical/reference assets. They are not substitutes for the audited PyTorch checkpoint or current MATLAB-to-ONNX Runtime inference route. Historical Keras metrics have not been reproduced.
+**Current inference route:** MATLAB `MedicalImageAnalysisApp` → MATLAB ONNX integration → `python/matlab_onnx_bridge.py` → ONNX Runtime `CPUExecutionProvider` → `unet_model.onnx`. The PyTorch training, evaluation, and export pipeline remains available for reproducibility. FastAPI, Docker/Compose, Keras training/inference scripts, and the local Keras model were retired and removed in Milestone 5.3.6. `notebooks/V1Train_UNet_LGG_Colab_with_visual_export.ipynb` remains only as an archived historical experiment; it is not part of the current runtime or installation.
+
+Historical Keras outputs have not been reproduced. The current artifacts and their evidence are the PyTorch/ONNX run listed above.
 
 ## Status and handover
 
-The current finalization record is in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md), and the developer-oriented checklist is in [docs/PROJECT_HANDOVER.md](docs/PROJECT_HANDOVER.md). The App Designer `.mlapp` and manual visual/usability acceptance remain outstanding. No remote is configured, and no content has been published.
+The current finalization record is in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md), and the developer-oriented checklist is in [docs/PROJECT_HANDOVER.md](docs/PROJECT_HANDOVER.md). Manual presentation-resolution GUI acceptance and transfer of the excluded artifacts were confirmed by the project owner on 2026-11-02; clean-machine installation and any required App Designer `.mlapp` authoring remain unverified. No remote is configured, and no content has been published.
 
-The latest acceptance evidence and outstanding release actions are summarized in the [Milestone 5.3.5 Final Release Report](docs/FINAL_RELEASE_REPORT.md). Automated tests passed on the existing development machine; clean-machine installation and human desktop acceptance remain pending.
+See the [Milestone 5.3.6 Legacy Cleanup Report](docs/LEGACY_CLEANUP_REPORT.md) for removals and fresh verification. The [Milestone 5.3.5 Final Release Report](docs/FINAL_RELEASE_REPORT.md) records its original evidence and subsequent owner-confirmed acceptance updates.

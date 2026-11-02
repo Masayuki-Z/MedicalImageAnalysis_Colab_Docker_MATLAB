@@ -37,6 +37,8 @@ MedicalImageAnalysisApp (MATLAB AppBase GUI)
 
 The current MATLAB inference implementation does not import ONNX natively. It calls ONNX Runtime from the Python interpreter configured by MATLAB.
 
+This is the only supported application inference route. The previous Keras/FastAPI/Docker workflow and its requirements and scripts were removed in Milestone 5.3.6. A Keras-era Colab notebook remains as archived historical material only; it is not a dependency of the MATLAB app or current PyTorch/ONNX pipeline.
+
 ## GUI and dispatch
 
 [`MedicalImageAnalysisApp.m`](../matlab/MedicalImageAnalysisApp.m) is a MATLAB `matlab.apps.AppBase` class. It creates six navigation sections, with separate controls and displays for Enhancement, Segmentation, and Geometric Transformation. UI callbacks gather controls and call the existing `applySelectedOperation` dispatcher; algorithms remain in independent module functions.

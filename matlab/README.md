@@ -1,6 +1,7 @@
 # MATLAB Image Processing Modules
 
-The functions are independent of the GUI prototype in `MedicalImageToolbox.m`.
+The functions are independent of the legacy, classic-only GUI prototype in
+`MedicalImageToolbox.m`; the current AI-capable GUI is `MedicalImageAnalysisApp.m`.
 Add the MATLAB folder tree to the path with `addpath(genpath(fullfile(pwd,"matlab")))`.
 Inputs may be grayscale or RGB numeric/logical images. Most image outputs are
 `double` in `[0,1]`; edge maps and masks are logical. Functions reject empty,
@@ -282,8 +283,10 @@ MATLAB R2026b: **34/34 test methods passed**. Automated GUI tests cover ground
 truth loading/resizing/replacement/reset, AI independence from ground truth,
 input propagation, mask-source selection, dynamic parameters, display,
 save/reset, errors, workflow navigation, independent selectors, section
-operation dispatch, and scoped reset. Manual desktop acceptance of the
-Milestone 5.3.2 layout and interactions remains outstanding.
+operation dispatch, and scoped reset. The project owner confirmed presentation
+resolution acceptance on 2026-11-02; clean-machine installation remains
+unverified.
+
 ## Milestone 5.3.5 verification
 
 The fresh MATLAB R2026b regression run passed **34/34** tests (0 failed, 0
@@ -295,4 +298,13 @@ no diagnostics reported for the current app or tests.
 See the [full test report](../docs/TEST_REPORT.md), [fresh MATLAB test output](../docs/evidence/test-results/matlab-r2026b-milestone-5.3.5-full-suite.txt),
 and [Final Release Report](../docs/FINAL_RELEASE_REPORT.md). Automated GUI
 tests do not constitute human desktop acceptance; target-display review remains
-pending.
+owner-confirmed as described in the [Final Release Report](../docs/FINAL_RELEASE_REPORT.md).
+
+## Milestone 5.3.6 legacy cleanup and regression
+
+The retired FastAPI/Docker Keras API integration was removed from the legacy
+`MedicalImageToolbox.m` prototype, which now contains only its classic demo
+operations. The main app and all Module 1–3 functions/tests were preserved.
+The fresh MATLAB R2026b suite passed **34/34** (0 failed, 0 incomplete). The
+Code Analyzer inspected 69 MATLAB files and reported three advisory findings
+in the legacy prototype; see the [Milestone 5.3.6 cleanup report](../docs/LEGACY_CLEANUP_REPORT.md).

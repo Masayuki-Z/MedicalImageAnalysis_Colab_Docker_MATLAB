@@ -1,0 +1,38 @@
+Milestone 5.3.6 repository audit; generated 2026-11-02
+branch=main
+pre_cleanup_head=4b5ce50
+remote_count=0
+tracked_path_count_at_head=123
+tracked_files_over_50MiB_at_head=0
+gitignored:.kaggle/credentials.json=True; present=False
+gitignored:data/lgg-mri-segmentation/kaggle_3m/README.md=True; present=True
+gitignored:model_output/colab_runs/20261101_205443/best_unet.pth=True; present=True
+gitignored:python/__pycache__/sample.pyc=True; present=False
+gitignored:.ipynb_checkpoints/sample.ipynb=True; present=False
+gitignored:models/tumor_unet.keras=True; present=False
+dataset_present=True; files=7860
+best_unet.pth present=True; bytes=124140929; sha256=88397DE274A8BC2D015DC35F658AE28F8B45A756852E3AD18D48EF1D6B53011E
+unet_model.onnx present=True; bytes=124134029; sha256=1CDB60FF9ACBA8BFDDEB621A9BFEA82E41C8BA176F0694988AA7C2FC0F21A290
+test_metrics.json present=True
+patient_split.json present=True
+training_history.json present=True
+onnx_parity.json present=True
+removed_target_absent:Dockerfile=True
+removed_target_absent:Dockerfile_jupy=True
+removed_target_absent:docker-compose.yml=True
+removed_target_absent:jupyter_req.txt=True
+removed_target_absent:api/app.py=True
+removed_target_absent:api/requirements.txt=True
+removed_target_absent:python/train.py=True
+removed_target_absent:python/visual_evaluate.py=True
+removed_target_absent:models/tumor_unet.keras=True
+archived_keras_notebook_present=True
+credential_contents_read=False
+staged_path_count_at_audit=0
+credential_paths_staged_at_audit=0
+legacy_runtime_source_reference_hits=0
+installation_guide_retirement_reference=docs/INSTALLATION_GUIDE.md documents retired packages as not required; no legacy installation command is present
+
+best_unet.pth current_sha256=88397DE274A8BC2D015DC35F658AE28F8B45A756852E3AD18D48EF1D6B53011E; manifest_match=True
+unet_model.onnx current_sha256=1CDB60FF9ACBA8BFDDEB621A9BFEA82E41C8BA176F0694988AA7C2FC0F21A290; manifest_match=True
+archived_notebook_json_valid=True; archive_banner_present=True

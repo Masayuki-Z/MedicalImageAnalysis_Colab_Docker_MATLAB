@@ -1,0 +1,8 @@
+Python bridge import: PASS
+ONNX model: C:\Users\ACER\Downloads\MedicalImageAnalysis_Colab_Docker_MATLAB\MedicalImageAnalysis_Colab_Docker_MATLAB\model_output\colab_runs\20261101_205443\unet_model.onnx
+ONNX Runtime: 1.31.1
+selected providers: ['CPUExecutionProvider']
+input shape=(1, 1, 256, 256); output shape=(1, 1, 256, 256)
+probability finite=True; min=0.00000000; max=0.98377931
+synthetic FLAIR source=[256, 256]; mean=0.50000001; std=0.28980499
+MATLAB getGliomaONNXBridge import: PASS

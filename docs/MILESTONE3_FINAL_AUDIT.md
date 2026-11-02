@@ -3,6 +3,8 @@
 Audit date: 2026-11-02  
 Audited run: `model_output/colab_runs/20261101_205443/`
 
+> Historical Milestone 3 evidence. References to the Keras-era workflow describe that milestone and are not current installation or runtime instructions. The legacy Keras/API/Docker implementation was retired in Milestone 5.3.6; the original audit findings and results below are preserved.
+
 ## Evidence and preserved artifacts
 
 The run directory contains `best_unet.pth`, `unet_model.onnx`,

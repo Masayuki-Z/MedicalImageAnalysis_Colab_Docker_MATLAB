@@ -2,7 +2,41 @@
 
 Updated: 2026-11-02
 
-## Current Status — Milestone 5.3.5: Final Acceptance, Reproducibility & Release Readiness
+## Current Status — Milestone 5.3.6: Legacy Dependency Audit & Final Repository Cleanup
+
+### Cleanup completed
+
+- Removed tracked `Dockerfile`, `Dockerfile_jupy`, `docker-compose.yml`, `jupyter_req.txt`, `api/app.py`, `api/requirements.txt`, `python/train.py`, and `python/visual_evaluate.py`.
+- Removed the ignored local `models/tumor_unet.keras` only after confirming no current workflow uses it and recording its former size and SHA-256 in [the cleanup report](LEGACY_CLEANUP_REPORT.md).
+- Removed the retired Keras/Docker API controls from the legacy `matlab/MedicalImageToolbox.m` prototype; its remaining classical demonstrations and all current image modules were preserved.
+- Kept the Keras-era notebook as explicitly archived historical evidence. Preserved the current PyTorch/ONNX inference path, training/evaluation/export pipeline, final PyTorch/ONNX model artifacts, dataset, metrics, split, training history, parity report, historical milestone records, and owner-created prompt/output files.
+- Updated current setup and architecture docs to describe MATLAB → Python bridge → ONNX Runtime CPU → `unet_model.onnx` as the sole application inference route; retired components are not part of installation.
+
+### Verification
+
+- MATLAB R2026b: **34 passed, 0 failed, 0 incomplete**.
+- Python 3.11: **7/7** pipeline tests passed; all **7** remaining Python source files compiled.
+- MATLAB Code Analyzer: 69 `.m` files inspected; three advisory findings remain in the legacy classic-only `matlab/MedicalImageToolbox.m` prototype.
+- ONNX smoke inference and MATLAB bridge import passed using ONNX Runtime 1.31.1 `CPUExecutionProvider`; input/output `[1,1,256,256]`; all probabilities finite and in `[0,1]`.
+- Final checkpoint and ONNX model hashes match the unchanged manifest. Neither current model nor any experiment result was changed.
+- Project owner confirmed presentation-resolution GUI acceptance and transfer/hash verification of excluded artifacts on 2026-11-02. These confirmations were not independently witnessed/repeated during this cleanup.
+- Clean-machine installation, MATLAB bridge GPU inference, and clinical validity remain unverified/out of scope. ONNX parity remains limited to five slices from one patient; the training collapse after epoch 7 remains unexplained.
+
+### Files removed
+
+See the exact path-by-path list and rationale in the [Milestone 5.3.6 Legacy Cleanup Report](LEGACY_CLEANUP_REPORT.md). Historical 5.3.5/5.3.4 status entries below are preserved as snapshots of those milestone states.
+
+### Fresh evidence
+
+- [MATLAB full suite](evidence/test-results/matlab-r2026b-milestone-5.3.6-full-suite.txt); [Python syntax and test output](evidence/test-results/python-r2026b-milestone-5.3.6.txt).
+- [MATLAB Code Analyzer](evidence/test-results/matlab-r2026b-milestone-5.3.6-code-analyzer.txt); [ONNX smoke test](evidence/test-results/onnx-milestone-5.3.6-smoke-test.txt).
+- Repository paths, exclusions, tracked size, artifact hashes, and removed-reference audit: [repository audit](evidence/test-results/repository-audit-milestone-5.3.6.txt).
+
+### Git commit
+
+The final Milestone 5.3.6 commit hash will be recorded here after committing the completed documentation, cleanup, and test evidence.
+
+## Completed Milestone 5.3.5: Final Acceptance, Reproducibility & Release Readiness
 
 ### Completed
 

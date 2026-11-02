@@ -1,9 +1,17 @@
 # PyTorch LGG Segmentation Migration
 
-This is the new PyTorch implementation path. It does not replace or rewrite the
-legacy Keras Notebook, `python/train.py`, `python/visual_evaluate.py`, FastAPI
-service, or `models/tumor_unet.keras`. Historical Keras outputs are not used as
-PyTorch training evidence.
+This is the current PyTorch implementation path. The retired Keras training
+and visualization scripts, FastAPI service, Docker assets, and local
+`tumor_unet.keras` model were removed in Milestone 5.3.6. The Keras-era Colab
+notebook remains archived as historical material only; its workflow is not
+supported and is not a dependency of the current system. Historical Keras
+outputs are not used as PyTorch training evidence.
+
+The only supported MATLAB application inference route is
+`MedicalImageAnalysisApp` → MATLAB ONNX integration →
+`matlab_onnx_bridge.py` → ONNX Runtime `CPUExecutionProvider` →
+`unet_model.onnx`. The PyTorch training/evaluation/export pipeline is retained
+for reproducibility and is separate from application inference.
 
 ## Dataset audit and preprocessing
 
@@ -229,6 +237,12 @@ depend on it. Audit output is in
 [`docs/evidence/test-results/python-r2026b-audit.txt`](../docs/evidence/test-results/python-r2026b-audit.txt).
 The documented virtual-environment installation remains unverified on a
 clean machine.
+
+Milestone 5.3.6 removed the retired TensorFlow/Keras scripts and FastAPI/Docker
+runtime. The historical Keras notebook is retained only as an archive. Fresh
+Python verification compiled all 7 remaining Python source files and passed
+all 7 pipeline tests. See the [cleanup report](../docs/LEGACY_CLEANUP_REPORT.md)
+and [Milestone 5.3.6 test output](../docs/evidence/test-results/python-r2026b-milestone-5.3.6.txt).
 
 ## Milestone 5.3.5 verification
 

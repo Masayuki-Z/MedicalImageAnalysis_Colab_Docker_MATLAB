@@ -1,23 +1,22 @@
 function MedicalImageToolbox
-% MATLAB GUI prototype. Requires Image Processing Toolbox for classic operations.
-% Run: addpath(fullfile(pwd,"matlab")); MedicalImageToolbox
-API="http://localhost:8000"; original=[]; result=[];
-f=uifigure("Name","Medical Image Analysis Toolbox","Position",[100 100 1150 700]);
+% Legacy classic-only GUI prototype. The current app is MedicalImageAnalysisApp.
+% Requires Image Processing Toolbox. Run: addpath(fullfile(pwd,"matlab")); MedicalImageToolbox
+original=[]; result=[];
+f=uifigure("Name","Medical Image Analysis Toolbox (Legacy Prototype)","Position",[100 100 1150 700]);
 g=uigridlayout(f,[3 4]); g.RowHeight={48,"1x",70}; g.ColumnWidth={"1x","1x",245,140}; g.Padding=[12 12 12 12];
-h=uilabel(g,"Text","Medical Image Analysis for Tumor Detection Using Keras","FontSize",18,"FontWeight","bold"); h.Layout.Row=1; h.Layout.Column=[1 4];
+h=uilabel(g,"Text","Medical Image Processing Toolbox (Legacy Prototype)","FontSize",18,"FontWeight","bold"); h.Layout.Row=1; h.Layout.Column=[1 4];
 a1=uiaxes(g); a1.Layout.Row=2; a1.Layout.Column=1; title(a1,"Original"); a1.XTick=[]; a1.YTick=[];
 a2=uiaxes(g); a2.Layout.Row=2; a2.Layout.Column=2; title(a2,"Result"); a2.XTick=[]; a2.YTick=[];
-p=uipanel(g,"Title","Controls"); p.Layout.Row=2; p.Layout.Column=3; c=uigridlayout(p,[8 1]); c.RowHeight={35,75,35,35,35,"1x",25,25}; c.Padding=[8 8 8 8];
+p=uipanel(g,"Title","Controls"); p.Layout.Row=2; p.Layout.Column=3; c=uigridlayout(p,[7 1]); c.RowHeight={35,75,35,35,"1x",25,25}; c.Padding=[8 8 8 8];
 b= uibutton(c,"Text","Load MRI","ButtonPushedFcn",@loadImage); b.Layout.Row=1;
-dd = uidropdown(c, "Items", ["Enhancement - CLAHE", "Noise Reduction - Median", "Edge Detection - Canny", "Segmentation - Otsu", "Transformation - Rotate 15 deg", "Keras U-Net Segmentation (Docker)"], "Value", "Enhancement - CLAHE");
+dd = uidropdown(c, "Items", ["Enhancement - CLAHE", "Noise Reduction - Median", "Edge Detection - Canny", "Segmentation - Otsu", "Transformation - Rotate 15 deg"], "Value", "Enhancement - CLAHE");
 dd.Layout.Row = 2;
 b=uibutton(c,"Text","Apply","ButtonPushedFcn",@apply); b.Layout.Row=3;
-b=uibutton(c,"Text","Check Docker API","ButtonPushedFcn",@checkAPI); b.Layout.Row=4;
-b=uibutton(c,"Text","Save Result","ButtonPushedFcn",@saveResult); b.Layout.Row=5;
-status=uitextarea(c,"Editable","off","Value","Load an MRI image."); status.Layout.Row=6;
-b=uibutton(c,"Text","Reset","ButtonPushedFcn",@reset); b.Layout.Row=7;
-lbl2=uilabel(c,"Text","Research/education only"); lbl2.Layout.Row=8;
-foot=uilabel(g,"Text","Predicted masks are not medical diagnoses. Validate model outputs and report limitations.","WordWrap","on"); foot.Layout.Row=3; foot.Layout.Column=[1 4];
+b=uibutton(c,"Text","Save Result","ButtonPushedFcn",@saveResult); b.Layout.Row=4;
+status=uitextarea(c,"Editable","off","Value","Load an image."); status.Layout.Row=5;
+b=uibutton(c,"Text","Reset","ButtonPushedFcn",@reset); b.Layout.Row=6;
+lbl2=uilabel(c,"Text","Research/education only"); lbl2.Layout.Row=7;
+foot=uilabel(g,"Text","Classical processing is for research/education and is not tumor-specific.","WordWrap","on"); foot.Layout.Row=3; foot.Layout.Column=[1 4];
     function loadImage(~,~)
         [file,path]=uigetfile({"*.png;*.jpg;*.jpeg;*.tif;*.tiff;*.bmp","Image files"});
         if isequal(file,0),return;end
@@ -34,27 +33,10 @@ foot=uilabel(g,"Text","Predicted masks are not medical diagnoses. Validate model
                 case "Edge Detection - Canny", result=edge(G,"Canny");
                 case "Segmentation - Otsu", result=imbinarize(G);
                 case "Transformation - Rotate 15 deg", result=imrotate(I,15,"bilinear","crop");
-                case "Keras U-Net Segmentation (Docker)", result=runKeras(I);
             end
             imshow(result,"Parent",a2); title(a2,dd.Value,"Interpreter","none");
-            if ~contains(dd.Value,"Keras U-Net"),status.Value=["Applied: "+string(dd.Value); "Classical result is not tumor-specific."];end
+            status.Value=["Applied: "+string(dd.Value); "Classical result is not tumor-specific."];
         catch ME,status.Value=["Failed"; string(ME.message)];uialert(f,ME.message,"Operation error");end
-    end
-    function out=runKeras(I)
-        health=webread(API+"/health",weboptions("Timeout",5));
-        if ~strcmp(health.status,"ok"),error("Docker model unavailable. Check models/tumor_unet.keras and docker logs.");end
-        if ndims(I)==2, rgb=repmat(I,1,1,3); elseif size(I,3)>=3,rgb=I(:,:,1:3);else,rgb=repmat(I(:,:,1),1,1,3);end
-        rgb=im2uint8(rgb); small=imresize(rgb,[256 256],"bilinear");
-        response=webwrite(API+"/predict",struct("image",double(small)),weboptions("MediaType","application/json","Timeout",120));
-        m=logical(response.mask); m=imresize(m,[size(rgb,1),size(rgb,2)],"nearest");
-        out=im2double(rgb); for k=1:3, ch=out(:,:,k); if k==1, overlayValue=1; else, overlayValue=0; end; ch(m)=.58*ch(m)+.42*overlayValue; out(:,:,k)=ch; end
-        out=im2uint8(out); status.Value=["Keras segmentation complete"; "Threshold: "+string(response.threshold); "Prediction is not a diagnosis."];
-    end
-    function checkAPI(~,~)
-        try
-            h=webread(API+"/health",weboptions("Timeout",5)); status.Value=["API: "+string(h.status); "Model: "+string(h.model_path)];
-            if ~strcmp(h.status,"ok"),uialert(f,"API is running but model is unavailable.","Model missing");end
-        catch ME,status.Value=["API not reachable"; string(ME.message)];uialert(f,"Run docker compose up --build from project root.","Docker API unavailable");end
     end
     function saveResult(~,~)
         if isempty(result),uialert(f,"No result to save.","No result");return;end

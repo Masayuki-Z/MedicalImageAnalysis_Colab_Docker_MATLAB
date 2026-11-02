@@ -1,0 +1,6 @@
+MATLAB Code Analyzer after Milestone 5.3.6 cleanup
+Files inspected: 69
+C:\Users\ACER\Downloads\MedicalImageAnalysis_Colab_Docker_MATLAB\MedicalImageAnalysis_Colab_Docker_MATLAB\matlab\MedicalImageToolbox.m:23: Extra comma is unnecessary.
+C:\Users\ACER\Downloads\MedicalImageAnalysis_Colab_Docker_MATLAB\MedicalImageAnalysis_Colab_Docker_MATLAB\matlab\MedicalImageToolbox.m:28: This keyword might not be aligned with its matching END on line 39.
+C:\Users\ACER\Downloads\MedicalImageAnalysis_Colab_Docker_MATLAB\MedicalImageAnalysis_Colab_Docker_MATLAB\matlab\MedicalImageToolbox.m:45: Extra comma is unnecessary.
+Code Analyzer inspected 69 MATLAB files; diagnostics=3.
