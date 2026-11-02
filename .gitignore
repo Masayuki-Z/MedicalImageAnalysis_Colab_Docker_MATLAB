@@ -6,8 +6,7 @@ models/*.keras
 models/*.json
 models/*.png
 results/*
-*.txt
-model_output/s
+model_output/
 masterprompt.txt
 processed_result.png
 PROMPT_CONTINUATION_TH.md
