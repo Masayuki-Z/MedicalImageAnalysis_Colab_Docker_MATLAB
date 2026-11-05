@@ -1,6 +1,6 @@
 # Group Project Report — MATLAB Image Processing Toolbox
 
-> **Course-project version.** This report follows the group assignment and is separate from `docs/PROJECT_REPORT.md`; that comprehensive report is unchanged. Replace text in **[square brackets]** with your group's details, screenshots, and results from your own demonstration. The model-training section documents the repository's existing PyTorch/U-Net workflow; identify the member responsible for training and add your actual contribution details.
+> **Course-project version.** This report follows the group assignment and is separate from `docs/PROJECT_REPORT.md`; that comprehensive report is unchanged. Replace the remaining square-bracket placeholders with your group's names, screenshots, and observations. Training details and experiment results below are taken from the repository's recorded PyTorch/ONNX experiment; do not describe them as a new training run unless you have rerun it.
 
 ## Project information
 
@@ -11,21 +11,21 @@
 | Student 1 | [Name] — image enhancement and filtering |
 | Student 2 | [Name] — segmentation, edge detection, morphology |
 | Student 3 | [Name] — geometric transforms, interpolation, integration/testing |
-| Student 4 | [Name] — tumor-segmentation model training and AI evaluation |
+| Student 4 | Masayuki-Z (you) — tumor-segmentation model training and AI evaluation |
 | Presentation date | [Date] |
 | MATLAB version | MATLAB R2026b (project's recorded test environment) |
 
 ## 1. Project overview
 
-Our group developed a MATLAB-based toolbox for experimenting with common image-processing techniques and brain-tumor segmentation. Users can load an image, select a processing operation, adjust parameters, and compare the input and result in a graphical interface. The toolbox includes three classical image-processing modules and an AI workflow: image enhancement; segmentation and edge detection; geometric transformations and interpolation; and training/inference/evaluation of a U-Net model for MRI tumor segmentation.
+Our group developed a MATLAB-based toolbox for experimenting with common image-processing techniques and brain-tumor segmentation. Users can load an image, select a processing operation, adjust its parameters, and compare the input and result in a graphical interface. The toolbox includes three classical image-processing modules and an AI workflow: image enhancement; segmentation and edge detection; geometric transformations and interpolation; and training/inference/evaluation of a U-Net model for MRI tumor segmentation.
 
-The project is intended as a learning and demonstration tool. The functions can be tried on general grayscale or RGB images, while the AI workflow is designed for FLAIR MRI from the documented LGG dataset. Results depend on input data and parameter choices. This software is not clinically validated and must not be used to diagnose or treat patients.
+The project is intended as a learning and demonstration tool. The classical functions can be tried on general grayscale or RGB images. The AI workflow is designed for FLAIR MRI from the documented LGG dataset. Results depend on input data and parameter choices. This software is not clinically validated and must not be used to diagnose or treat patients.
 
 ### Project aims
 
 - Implement the course-required image-processing techniques as reusable MATLAB functions.
 - Provide a GUI for loading images, selecting operations, and viewing results.
-- Develop/train a U-Net tumor-segmentation model using the project's PyTorch training pipeline and demonstrate its inference from the toolbox.
+- Train/use a U-Net tumor-segmentation model with the project's PyTorch workflow and demonstrate inference from the toolbox.
 - Keep classical processing, AI prediction, and ground-truth masks distinct and compare results where appropriate.
 - Test the functions and document the techniques, code organization, and observed results.
 
@@ -33,14 +33,14 @@ The project is intended as a learning and demonstration tool. The functions can 
 
 | Member | Assigned focus | Main contributions | Evidence / files |
 |---|---|---|---|
-| Student 1: [Name] | Enhancement and spatial/frequency filtering | [List implemented functions, tests, screenshots, or documentation.] | `matlab/enhancement/` — [specific files or evidence] |
-| Student 2: [Name] | Classical segmentation, edge detection, morphology | [List implemented functions, tests, screenshots, or documentation.] | `matlab/segmentation/` — [specific files or evidence] |
-| Student 3: [Name] | Geometric transformations, interpolation, GUI integration/testing | [List implemented functions, tests, screenshots, and integration work.] | `matlab/geometric/`, `matlab/tests/`, `matlab/MedicalImageAnalysisApp.m` — [specific work] |
-| Student 4: [Name] | U-Net training for tumor segmentation, AI inference/evaluation | [Describe dataset preparation, training, validation, model export, and evaluation actually completed.] | `notebooks/`, `python/pytorch_pipeline.py`, `python/matlab_onnx_bridge.py`, `matlab/ai/` — [specific work] |
+| Student 1: [Name] | Enhancement and spatial/frequency filtering | Implement and demonstrate histogram/intensity operations, smoothing, sharpening, and Fourier filters; document settings and compare input/output images. | `matlab/enhancement/` |
+| Student 2: [Name] | Classical segmentation, edge detection, morphology | Implement and demonstrate edge detectors, threshold/region/color segmentation, and mask refinement; compare outputs and document parameter choices. | `matlab/segmentation/` |
+| Student 3: [Name] | Geometric transformations, interpolation, GUI integration/testing | Implement and demonstrate transforms/interpolation; integrate module controls and views; coordinate shared image conventions and run integration/regression tests. | `matlab/geometric/`, `matlab/tests/`, `matlab/MedicalImageAnalysisApp.m` |
+| Student 4: **Masayuki-Z (you)** | U-Net training for tumor segmentation, AI inference/evaluation | Prepare and validate the patient-level data split and preprocessing; run/record model training; review validation behavior and checkpoint selection; maintain the inference/export workflow; evaluate predictions and document limitations. | `notebooks/Train_UNet_PyTorch_Colab.ipynb`, `python/pytorch_pipeline.py`, `python/matlab_onnx_bridge.py`, `matlab/ai/` |
 
-**How we coordinated:** [Briefly describe how the group shared code, reviewed each other's work, agreed on interfaces, and combined the modules and model workflow.]
+**How we coordinated:** The group divided the work by module and agreed on common image and mask conventions before integration. Each member developed or reviewed their assigned functions and recorded the operation inputs, parameters, and outputs. We used the shared repository and MATLAB function documentation to connect the modules to the GUI, then checked that the controls passed compatible image data to each function. The group compared representative outputs, discussed issues during integration, and used the available tests and review feedback to check that changes did not break other modules. Student 4 coordinated the model data/preprocessing and inference interface with Student 3 so that the trained model received the expected FLAIR input and returned a mask the GUI could display. [Add actual meeting/tool details if desired.]
 
-**Challenges and how we addressed them:** [For example: image ranges, RGB versus grayscale handling, selecting parameters, mask interpolation, connecting the GUI to Python, model preprocessing consistency, or agreeing on test images. Describe only challenges your group actually encountered.]
+**Challenges and how we addressed them:** One common challenge was that image functions can expect different input forms, such as grayscale versus RGB images, normalized intensities versus integer pixel values, or continuous intensity images versus binary masks. We used shared validation and documented input/output conventions to make these differences explicit. We kept original, enhanced, transformed, classical-mask, AI, and ground-truth states separate to avoid overwriting data. For geometric operations on masks, we used nearest-neighbor interpolation to retain binary labels. During integration, we used separate module controls and a shared dispatch/state flow, then checked representative operations and automated tests. For the AI workflow, we documented the FLAIR channel, resize and normalization steps, and fixed inference threshold so preprocessing was consistent between training and MATLAB inference. The recorded model training also showed a performance collapse after epoch 7; its cause was not established, so we retained the recorded checkpoint and reported this as a limitation rather than claiming a fix.
 
 ## 3. Toolbox organization and workflow
 
@@ -132,7 +132,7 @@ For edge detection, compare outputs from the same input and similar threshold se
 
 **Insert comparison figure:** [Add one screenshot showing the input and at least two edge or segmentation outputs. Caption each method and list settings.]
 
-**Optional recorded project example:** The repository's classical MRI demo reports an Otsu threshold of 0.774510 for one 256×256×3 dataset TIFF. Its mask area was 14,582 pixels before and 15,642 pixels after the recorded closing/shape-filter step. These are single-run mask sizes, not accuracy measures or ground-truth tumor labels.
+**Recorded classical MRI example:** The repository demo reports an Otsu threshold of 0.774510 for one 256×256×3 dataset TIFF. Its mask area was 14,582 pixels before and 15,642 pixels after the recorded closing/shape-filter step. These are single-run mask sizes, not accuracy measures or ground-truth tumor labels.
 
 ## 6. Module 3 — Geometric transformations and interpolation (Student 3)
 
@@ -170,47 +170,83 @@ The coordinate convention is `x = column`, `y = row`, with pixel coordinates sta
 
 **Integration/testing work by Student 3:** [Describe how operations were connected to the GUI, the shared input/output conventions, and the tests or integration checks actually performed.]
 
-## 7. Module 4 — Tumor-segmentation model training and AI workflow (Student 4)
+## 7. Module 4 — Tumor-segmentation model training and AI workflow (Student 4: Masayuki-Z)
 
 ### 7.1 Purpose and basic theory
 
-Unlike thresholding or region growing, a trained segmentation model learns image-to-mask patterns from labeled examples. The project uses a 2-D U-Net, a convolutional encoder-decoder network with skip connections that combine coarse contextual features with finer spatial details. It predicts a probability for each pixel; applying a threshold converts the probability map into a binary mask. Training uses MRI slices and corresponding tumor masks, while evaluation uses held-out data to estimate how well predictions overlap the labels.
+Unlike thresholding or region growing, a trained segmentation model learns image-to-mask patterns from labeled examples. The project uses a 2-D U-Net, a convolutional encoder-decoder network with skip connections that combine coarse contextual features with finer spatial details. It predicts a probability for each pixel; applying a threshold converts the probability map into a binary mask. Training uses MRI slices and corresponding tumor masks, while evaluation on held-out patients estimates overlap with reference labels.
 
-### 7.2 Training and inference implementation
+### 7.2 Dataset preparation and patient split
 
-The repository provides a PyTorch Colab notebook and Python pipeline for dataset preparation, model training/evaluation, preprocessing, and export. The trained network is exported to ONNX for use from the MATLAB application. The MATLAB-side AI code selects the documented FLAIR channel from the **original MRI** and calls `python/matlab_onnx_bridge.py` through MATLAB's configured Python environment. The shared preprocessing converts the image to float32 `[0,1]`, resizes to 256×256 with bilinear interpolation when needed, and applies per-slice population Z-score normalization with epsilon `1e-6`. ONNX Runtime runs with `CPUExecutionProvider`; the model input/output shape is `[1,1,256,256]`. MATLAB thresholds probabilities at 0.5 and uses nearest-neighbor resizing if the binary mask must be restored to the original dimensions.
+The recorded pipeline pairs TIFF MRI images with binary masks and validates that image/mask dimensions align and that masks contain binary foreground/background values. It selects the FLAIR channel from the documented three-channel MRI data. To reduce patient-level data leakage, images are split by patient folder rather than randomly by slice. The recorded split uses seed 42 and a 70/15/15 train/validation/test allocation:
 
-**Student 4 training responsibilities:** document which dataset split and preprocessing were used, configure and run the training, monitor training/validation behavior, select a checkpoint based on the project's validation procedure, export or use the ONNX model, and report evaluation on held-out data. Fill in the actual work performed below; do not state that training was repeated unless your group actually ran it.
-
-| Training item | Group details |
-|---|---|
-| Dataset and license/source | [Dataset name/source and applicable terms] |
-| Patient-level or other split | [Describe train/validation/test split; avoid data leakage] |
-| Input modality and image size | [For example, FLAIR and 256×256; confirm actual setup] |
-| Model and loss/optimizer | [Fill in actual U-Net configuration, loss, optimizer, and key settings] |
-| Training environment and epochs | [Fill in actual environment and completed epochs] |
-| Selected checkpoint and selection rule | [Fill in] |
-| Export/inference format | [For example, ONNX; fill in what you used] |
-| Student 4 contribution | [Describe actual individual contribution] |
-
-### 7.3 Results and evaluation
-
-When ground-truth masks are available, compare predicted and reference masks using pixel counts and overlap metrics. The project GUI can show TP/FP/FN overlap and report Dice, IoU, precision, and recall. Report the test split and calculation method with any numbers.
-
-The repository's recorded experiment—not necessarily a new run by this course group—used a fixed 0.5 threshold and reports pooled pixel metrics for 569 unseen-test slices from 16 patients:
-
-| Metric | Recorded project value | Our group's result (if rerun) |
+| Split | Patients | Slices |
 |---|---:|---:|
-| Dice | 0.781607 | [Fill in or write “not rerun”] |
-| IoU | 0.641507 | [Fill in or write “not rerun”] |
-| Precision | 0.772103 | [Fill in or write “not rerun”] |
-| Recall | 0.791348 | [Fill in or write “not rerun”] |
+| Training | 77 | 2,719 |
+| Validation | 17 | 641 |
+| Held-out test | 16 | 569 |
+| **Total** | **110** | **3,929** |
 
-The recorded training stopped after 19 epochs, with the best validation checkpoint at epoch 7; the reported training curve collapsed after epoch 7 for an unknown reason. ONNX parity was checked on five slices from one test patient only. Include this context when discussing the metrics, and do not present them as clinical performance or claim that the group reproduced them without running the experiment.
+The saved split audit reports no patient overlap between subsets. The test set is excluded from training and checkpoint selection. The dataset is the LGG MRI Segmentation Dataset; its dataset-card terms are CC BY-NC-SA 4.0, so review those terms before sharing or redistributing data.
 
-**Insert AI results figure:** [Show an MRI input, ground-truth mask if available, predicted mask, and overlay/probability map. State the subject/split, threshold, and whether this is a repository example or your group's new result.]
+### 7.3 Preprocessing and augmentation
 
-**What we observed:** [Describe visible successes and errors, such as missed small regions or false positives. Do not infer clinical significance.]
+Each RGB slice is read as uint8 and the documented FLAIR channel (zero-based index 1, the second channel) is converted to float32 and scaled to `[0,1]`. Images are resized to 256×256 with bilinear interpolation only when needed; masks use nearest-neighbor interpolation to preserve binary labels. Each 2-D FLAIR slice is normalized independently using population Z-score normalization:
+
+`normalized = (image - slice_mean) / max(slice_standard_deviation, epsilon)`
+
+The configured epsilon is `1e-6`; constant slices are safely centered and produce zeros. Training-only augmentation includes random horizontal flips and rotations up to 10 degrees; the image uses bilinear sampling while its mask uses nearest-neighbor sampling. Validation and test data are not augmented.
+
+### 7.4 U-Net architecture and training configuration
+
+The model is a single-channel, four-level 2-D U-Net. Each encoder/decoder block uses two 3×3 convolutions with ReLU activations; max pooling reduces spatial resolution in the encoder, transposed convolutions upsample in the decoder, and skip connections concatenate encoder features with decoder features. A final 1×1 convolution and sigmoid produce a one-channel probability map.
+
+Recorded training configuration:
+
+| Setting | Recorded value |
+|---|---|
+| Input / output | One-channel 256×256 FLAIR image / per-pixel probability map |
+| Encoder channels | 64, 128, 256, 512 |
+| Bottleneck channels | 1024 |
+| Decoder channels | 512, 256, 128, 64 |
+| Parameters | 31,030,593 |
+| Loss | Binary cross-entropy plus soft Dice loss |
+| Optimizer / learning rate | Adam, 0.0001 |
+| Random seed | 42 |
+| Batch size | 8 |
+| Maximum epochs | 100 |
+| Completed epochs | 19 |
+| Checkpoint selection | Best validation Dice; selected checkpoint is epoch 7 |
+| Training environment | Google Colab, Tesla T4 GPU, CUDA 13.0, PyTorch 2.11.0+cu130 |
+| Recorded full-run elapsed time | 4,016.55 seconds (about 66.9 minutes) |
+
+The repository preserves the training notebook, pipeline, run configuration/history, and model artifacts outside Git. These values describe the audited run and are not a claim that the group repeated training during report preparation.
+
+### 7.5 Model export and MATLAB inference
+
+The selected PyTorch model was exported to ONNX. In the GUI, MATLAB starts with the original MRI, selects the documented FLAIR channel, and calls the Python bridge through MATLAB `pyenv`. The shared preprocessing implementation resizes and normalizes the FLAIR slice consistently with training. ONNX Runtime uses `CPUExecutionProvider`; the model tensor is `[1,1,256,256]`. The application validates that probabilities are finite and in `[0,1]`, thresholds them at 0.5, and restores a binary prediction to the original image dimensions with nearest-neighbor resizing when required. AI input, probability map, prediction, classical mask, and ground truth remain distinct states.
+
+### 7.6 Results and evaluation
+
+At a fixed probability threshold of 0.5, the recorded held-out evaluation pools pixel counts over 569 slices from 16 test patients. The metrics are computed from the aggregate true-positive, false-positive, and false-negative pixel counts; they are not an average of per-patient scores.
+
+| Metric | Recorded held-out result |
+|---|---:|
+| Dice | 0.781607 |
+| IoU | 0.641507 |
+| Precision | 0.772103 |
+| Recall | 0.791348 |
+| True-positive pixels | 289,408 |
+| False-positive pixels | 85,423 |
+| False-negative pixels | 76,307 |
+
+The ONNX parity report compared five test slices from one patient. Maximum absolute probability difference was `3.2783e-7`, and there were zero thresholded-mask mismatches at 0.5. This is a limited export-consistency check, not broad validation.
+
+Training improved through epoch 7, with best validation Dice 0.784357. Starting at epoch 8, the recorded training loss increased and training/validation Dice collapsed to zero through epoch 19. The reason is unknown: the saved artifacts do not include the optimizer state, per-step gradient norms, or epoch-8 weights needed to establish a cause. The epoch-7 checkpoint was retained; do not present this instability as solved.
+
+**AI result image still needed:** Add a screenshot/export from the actual application showing (1) the FLAIR input, (2) ground-truth mask if available, (3) predicted mask, and (4) overlay or probability map. Caption it with the test/validation split, threshold, and note that the quantitative values above come from the recorded held-out experiment. Do not invent a visual result if the local model/dataset artifacts are unavailable.
+
+**What the recorded results suggest:** The pixel-pooled scores indicate overlap between predictions and annotations on this held-out split, while the nonzero false-positive and false-negative counts show that predictions are not identical to reference masks. The training collapse after epoch 7 and limited five-slice ONNX parity sample are important caveats. These results do not establish clinical usefulness.
 
 ## 8. GUI and integrated toolbox
 
@@ -234,7 +270,7 @@ app = MedicalImageAnalysisApp;
 
 ## 9. Testing and observed overall results
 
-The project includes MATLAB tests for image operations, invalid parameters, geometric mappings/interpolation, image state, GUI workflows, ONNX integration, and ground-truth evaluation. The repository's recorded MATLAB R2026b verification reported **34 passed, 0 failed, 0 incomplete**. Its Python pipeline unit suite reported **7/7 passed**. These are existing project verification results; if your group changes the code or runs a different environment, record the new run below rather than implying it was rerun for this report.
+The project includes MATLAB tests for image operations, invalid parameters, geometric mappings/interpolation, image state, GUI workflows, ONNX integration, and ground-truth evaluation. The repository's recorded MATLAB R2026b verification reported **34 passed, 0 failed, 0 incomplete**. Its Python pipeline unit suite reported **7/7 passed**. A synthetic FLAIR input was also tested through the MATLAB/ONNX CPU bridge. These are existing project verification results; if your group changes the code or runs a different environment, record the new run below rather than implying it was rerun for this report.
 
 | Your group's test run | Result |
 |---|---|
@@ -286,7 +322,7 @@ Suggested 8-minute structure; adjust to the actual presentation length:
 
 ## 13. Conclusion
 
-The group project brings together three classical MATLAB image-processing modules and a trained-model tumor-segmentation workflow. The enhancement module changes intensity and spatial/frequency content; the classical segmentation module detects edges and creates/refines masks; the geometric module transforms images and compares interpolation methods; and the AI work trains or uses a U-Net to predict tumor masks from MRI. The final demonstration should show the functions working on selected images, explain each member's contribution, and discuss results and limitations. Fill in the experiment tables, training details, and screenshot placeholders with your group's own evidence before submission.
+The group project brings together three classical MATLAB image-processing modules and a trained-model tumor-segmentation workflow. The enhancement module changes intensity and spatial/frequency content; the classical segmentation module detects edges and creates/refines masks; the geometric module transforms images and compares interpolation methods; and the AI work trains/uses a U-Net to predict tumor masks from MRI. The recorded experiment provides a patient-separated test evaluation and an ONNX consistency check, with training instability and limited parity testing clearly noted. The final demonstration should show the functions working on selected images, explain each member's contribution, and discuss results and limitations. Add the requested screenshots and any new group-run results before submission.
 
 ## References and project documentation
 
@@ -294,4 +330,5 @@ The group project brings together three classical MATLAB image-processing module
 - [Architecture](ARCHITECTURE.md)
 - [User guide](USER_GUIDE.md)
 - [Test report](TEST_REPORT.md)
+- [Final experiment audit](MILESTONE3_FINAL_AUDIT.md)
 - [Comprehensive project report](PROJECT_REPORT.md) — retained separately and unchanged
